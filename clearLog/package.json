@@ -1,0 +1,15 @@
+{
+  "name": "clearlog",
+  "version": "1.0.0",
+  "description": "定时清理日志",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.4",
+    "node-schedule": "^2.1.1"
+  }
+}

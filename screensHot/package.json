@@ -1,0 +1,18 @@
+{
+  "name": "screenshot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node desktop_screenshot.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "desktop-screenshot": "^0.1.1",
+    "moment": "^2.29.4",
+    "node-schedule": "^2.1.1",
+    "screenshot-desktop": "0.0.0-development"
+  }
+}

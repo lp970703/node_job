@@ -1,0 +1,12 @@
+{
+  "name": "ffmpeg_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ms4_mp4.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start01": "node ./mp4_mp3.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
