@@ -1,0 +1,44 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "singleThread",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\singleThread.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "singleThread_wordBoxes",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\singleThread_wordBoxes.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "moreThreads",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\moreThreads.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "moreTest",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\moreTest.js"
+        }
+    ]
+}
