@@ -1,18 +1,33 @@
 # node.js + Tesseract.js + opencv  
-1、singleThread.js：    
-    &emsp;简介：通过tesseract.js单线程实现OCR文字识别，并将文本输出到output/SingleThreadRes.txt中。     
-    &emsp;场景：a、用来解决将图片内容转换成普通文本输出     
 
-2、moreThreads.js：  
-    &emsp;简介：通过tesseract.js多线程批量实现OCR文字识别（建议workers数量跟cpu核心数保持一致），并将多个结果通过http请求返回给调用者    
-    &emsp;场景：a、用来解决多张图片内容转换成普通文本输出（比单线程要快，具体结果可看./images/多线程运行效率截图文件夹下） 
-    &emsp;&emsp;b、可通过调接口的方式，在特定时间下远程调用OCR识别（注意因接口相应时间过长，注意http注入的风险）   
+## 项目简介 
 
-3、singleThread_wordBoxes.js：  
-    &emsp;简介：通过tesseract.js + openCV(opencv4nodejs)方式，将图片文字信息和文字位置识别出来，并通过openCV的方式将图片按照    
-    &emsp;场景：a、RPA中捕获元素并非常规元素，无法捕获到，可通过这种方式快速定位到指定文字位置后，并进行无目标点击  
-    &emsp;&emsp;b、将文字识别出来后，若发现有些字体识别误差过大，可通过标识的方框快速定位，可通过tesseractOCR自带的训练模型进行训练，提高识别度     
-    &emsp;&emsp;c、可为后续知道字符坐标进行裁剪。   
+### 一、singleThread.js：  
+
+1、简介：
+*   通过tesseract.js单线程实现OCR文字识别，并将文本输出到output/SingleThreadRes.txt中。   
+
+2、场景：
+*   用来解决将图片内容转换成普通文本输出     
+
+### 二、moreThreads.js：  
+
+1、简介：
+*   通过tesseract.js多线程批量实现OCR文字识别（建议workers数量跟cpu核心数保持一致），并将多个结果通过http请求返回给调用者    
+
+2、场景：
+*   a、用来解决多张图片内容转换成普通文本输出（比单线程要快，具体结果可看./images/多线程运行效率截图文件夹下） 
+*   b、可通过调接口的方式，在特定时间下远程调用OCR识别（注意因接口相应时间过长，注意http注入的风险）   
+
+### 三、singleThread_wordBoxes.js：  
+
+1、简介：
+*   通过tesseract.js + openCV(opencv4nodejs)方式，将图片文字信息和文字位置识别出来，并通过openCV的方式将图片按照   
+
+2、场景：
+*   a、RPA中捕获元素并非常规元素，无法捕获到，可通过这种方式快速定位到指定文字位置后，并进行无目标点击  
+*   b、将文字识别出来后，若发现有些字体识别误差过大，可通过标识的方框快速定位，可通过tesseractOCR自带的训练模型进行训练，提高识别度     
+*   c、可为后续知道字符坐标进行裁剪。   
 
 
 
