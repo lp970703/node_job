@@ -50,11 +50,11 @@
 
 
 
-## 所需环境     
+## 所需环境  （win10）   
 
 ### 一、安装
 
-1、安装node v14.21.0    
+1、安装node v16.20.0及以上     
 *   node下载： [node下载](https://nodejs.cn/download/)  
 *   注意需要设置环境变量在path中
 
@@ -73,17 +73,67 @@
 *   Cmake：一款跨平台安装编译器，openCV调用的必备工具之一
 *   Cmake下载：[Cmake下载](https://cmake.org/download/)
 *   安装请注意不要有中文字符的目录下
-*   安装时有自动配置环境变量的选项，请点击，或安装完成后手动配置环境变量
+*   安装时有自动配置环境变量的选项，请点击，或安装完成后手动配置环境变量 
 
-5、安装node-gyp 
-*   全局安装：npm install node-gyp -g
-*   window系统若无法下载，请在点击win后输入cmd右键进入以管理员身份打开并输入指令
-
-6、安装windows-build-tools
+5、安装windows-build-tools
 *   windows-build-tools：使用npm安装Windows的C++构建工具，有了这个工具才能使用C++编译程序，请务必完成1、2、3、4、5安装步骤之后，最后一步安装
 *   全局安装：npm install --global windows-build-tools      
 *   请在点击win后输入cmd右键进入以管理员身份打开并输入全局安装指令
 *   如果Visual Studio版本过高，需要npm install --global windows-build-tools --vs2015
+
+6、安装openCV -V4.6
+*   openCV -V4.6下载：[openCV4.6](https://nchc.dl.sourceforge.net/project/opencvlibrary/4.6.0/opencv-4.6.0-vc14_vc15.exe)他需要等待几秒后会弹出下载路径提示
+*   按照步骤安装，注意安装路径不要出现中文，特殊字符以及空格（eg：c:\tools\opencv）
+*   配置环境变量：需要配置如下变量  
+
+|    环境变量名                               | 	值                                      | 
+| ------------------------------------------ | ------------------------------------------  | 
+| OPENCV_INCLUDE_DIR                         |  c:\tools\opencv\opencv\build\include       | 
+| OPENCV_LIB_DIR                             | 	c:\tools\opencv\opencv\build\x64\vc15\lib  | 
+| OPENCV_BIN_DIR                             | 	c:\tools\opencv\opencv\build\x64\vc15\bin  | 
+| OPENCV4NODEJS_AUTOBUILD_OPENCV_VERSION     | 	4.6.0                                      | 
+| OPENCV4NODEJS_DISABLE_AUTOBUILD            | 	1                                          | 
+
+*   需要在package.json中添加如下： 
+
+```bash 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install_arm64": "build-opencv --version 4.6.0 --flag=\"-DCMAKE_SYSTEM_PROCESSOR=arm64 -DCMAKE_OSX_ARCHITECTURES=arm64\" build",
+    "install_4.6.0_cuda": "build-opencv --version 4.6.0 --flags=\"-DWITH_CUDA=ON -DWITH_CUDNN=ON -DOPENCV_DNN_CUDA=ON -DCUDA_FAST_MATH=ON\" build",
+    "do-install": "build-opencv build"
+  },
+  "opencv4nodejs": {
+    "disableAutoBuild": 1,  #自动build，无需手动编译openCV文件
+    "opencvIncludeDir": "C:\\tools\\opencv\\opencv\\build\\include",
+    "opencvLibDir": "C:\\tools\\opencv\\opencv\\build\\x64\\vc15\\lib",
+    "opencvBinDir": "C:\\tools\\opencv\\opencv\\build\\x64\\vc15\\bin",
+    "autoBuildOpencvVersion": "4.6.0"
+  }
+```
+
+
+7、安装node-gyp 
+*   全局安装：npm install node-gyp -g
+*   window系统若无法下载，请在点击win后输入cmd右键进入以管理员身份打开并输入指令
+
+8、安装opencv4nodejs相关（管理员模式）
+*   npm install --save opencv4nodejs
+*   npm i @u4/opencv4nodejs -g
+*   npm link
+*   安装后重启VScode终端
+
+9、项目中安装@u4/opencv4nodejs
+*   进入指定项目中，输入npm install -S @u4/opencv4nodejs将全局的@u4/opencv4nodejs复制到项目中去，这样不需要重新编译了
+*   执行脚本npm run install_arm64(通过u4/opencv4nodejs将opencv进行build，注意这个是win10的64位运行的指令)
+*   执行脚本npm run install_4.6.0_cuda(同样生成build)
+*   上述指令参考github网址[@u4/opencv4nodejs](https://github.com/UrielCh/opencv4nodejs)
+
+10、使用
+
+```bash
+const cv = require('@u4/opencv4nodejs');
+```
 
 
 ### 二、踩坑点
@@ -102,8 +152,22 @@ info find-msbuild version: 4, path: C:\Windows\Microsoft.NET\Framework\v4.0.3031
 *   原因：npm install --global windows-build-tools安装的版本过高，可以npm install --global windows-build-tools --vs2015进行解决
 
 4、报错：Command failed: node-gyp rebuild --jobs max
-*   原因：node版本过高，跟node-gyp不兼容，可以用nvm将管理node版本，将node版本降低
-    
+if not defined npm_config_node_gyp (node "D:\Environment\nvm\nvm\v14.21.0\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" rebuild --jobs max )  else (node "D:\Environment\nvm\nvm\v14.21.0\node_modules\npm\node_modules\node-gyp\bin\node-gyp.js" rebuild --jobs max )
+*   原因：node版本跟node-gyp不兼容，可以用nvm将管理node版本，将node版本降低或增高（我这里用的14版本过低）
+*   版本说明：  请按照以下版本安装  
+
+|    软件包   | 	版本          | 
+| ---------- | ----------------  | 
+| node       |  >= 16.0.0        | 
+| python     | 	>= 3.8 & <=3.10  | 
+| cmake      | 	3.26.0           | 
+| opencv     | 	>= 4.6           | 
+
+5、报错：Uncaught Error Error: Cannot find module 'D:\Code\node\tesseractOCR_js\node_modules\opencv4nodejs\build\Release\opencv4nodejs' Require stack:   
+-D:\Code\node\tesseractOCR_js\node_modules\opencv4nodejs\lib\cv.js  
+-D:\Code\node\tesseractOCR_js\node_modules\opencv4nodejs\lib\opencv4nodejs.js   
+-D:\Code\node\tesseractOCR_js\singleThread_wordBoxes.js 
+*   原因：opencv4nodejs没有找到编译后的目录，需要执行一、安装中第9步，npm run install_arm64和install_4.6.0_cuda
 
 ## 运行准备
 
@@ -132,6 +196,34 @@ info find-msbuild version: 4, path: C:\Windows\Microsoft.NET\Framework\v4.0.3031
 
 5、node ./singleThread.js，通过调接口http://127.0.0.1:3002/moreThreadsOCR?workerNum=xxx&fileDir=xxx 方式进行调用
 
+
+
+
+
+##  小结    
+
+1、如何以管理员身份打开某个路径的文件
+*   进入路径C:\Windows\System32，将[cmd.reg]https://github.com/lp970703/node_job/Environment/guanliyuan_setting文件放到目录下保存
+*   到想要管理员权限打开cmd窗口的文件，右击出现Open cmd here as Admin点击就可以打开了。
+
+2、使用nvm控制node版本
+*   安装nvm[nvm](https://github.com/coreybutler/nvm-windows/tags)
+*   编辑环境变量，在"我的电脑"右键"属性"-"高级系统设置"-"高级"-"环境变量",新增如下变量（安装应注意避免中文、空格路径、cmd窗口要以管理员身份）
+```bash
+NVM_HOME = d:\nvm    
+NVM_SYMLINK = d:\Program Files\nodejs
+Path = %NVM_HOME%;%NVM_SYMLINK%
+```
+*   通过nvm指令下载：nvm install x.x.x(x.x.x位版本号)
+*   常用nvm指令：
+```bash
+    nvm -v                      #查看nvm版本
+    nvm use 16.20.0             #使用16.20.0版本的node
+    nvm install x.x.x           #下载指定node版本
+    nvm ls                      #查看当前使用node版本以及目前下载的node版本
+    npm cache clean --force     #切换版本建议在npm i时先清除一下cache
+```
+
 ## 相关node学习文档
 
 <!-- add docs here for user -->
@@ -153,9 +245,13 @@ egg-oauth2-server相关：[egg-oauth2-server](https://github.com/Azard/egg-oauth
 
 tesseract.js相关：[tesseract.js](https://github.com/naptha/tesseract.js)
 
-opencv4nodejs相关：[opencv4nodejs]https://github.com/justadudewhohacks/opencv4nodejs 
+opencv4nodejs相关：[opencv4nodejs](https://github.com/justadudewhohacks/opencv4nodejs) 
 
-cv相关中文api文档：[cv中文手册]https://github.com/lp970703/node_job/openCV
+@u4/opencv4nodejs相关：[@u4/opencv4nodejs](https://github.com/UrielCh/opencv4nodejs)
+
+opencv4nodejs安装全过程：[opencv4nodejs安装](https://www.jianshu.com/p/82f2dbff59d9)
+
+cv相关中文api文档：[cv中文手册](https://github.com/lp970703/node_job/openCV)
 
 <!-- 关于swagger和sequlize借鉴下面网址 -->
 <!-- (https://www.jianshu.com/p/accbe04a7ffa) -->

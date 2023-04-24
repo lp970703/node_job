@@ -4,16 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install_arm64": "build-opencv --version 4.6.0 --flag=\"-DCMAKE_SYSTEM_PROCESSOR=arm64 -DCMAKE_OSX_ARCHITECTURES=arm64\" build",
+    "install_4.6.0_cuda": "build-opencv --version 4.6.0 --flags=\"-DWITH_CUDA=ON -DWITH_CUDNN=ON -DOPENCV_DNN_CUDA=ON -DCUDA_FAST_MATH=ON\" build",
+    "do-install": "build-opencv build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@u4/opencv4nodejs": "^6.5.1",
     "koa": "^2.14.2",
     "koa-router": "^12.0.0",
     "moment": "^2.29.4",
     "opencv4nodejs": "^5.6.0",
     "tesseract.js": "^2.1.5",
     "tesseract.js-core": "^2.0.0-beta.13"
+  },
+  "opencv4nodejs": {
+    "disableAutoBuild": 1,
+    "opencvIncludeDir": "C:\\tools\\opencv\\opencv\\build\\include",
+    "opencvLibDir": "C:\\tools\\opencv\\opencv\\build\\x64\\vc15\\lib",
+    "opencvBinDir": "C:\\tools\\opencv\\opencv\\build\\x64\\vc15\\bin",
+    "autoBuildOpencvVersion": "4.6.0"
   }
 }

@@ -1,5 +1,21 @@
 该文件为一些日常需要用的node微服务
-1、clearLog：清理日志的服务
-2、replace：清理工作易打印日志出现的各种_-_-符号
-3、screensHot：桌面截屏（定时没分钟截屏一次）
-4、ffmpeg_node: 将本地视频文件转码（本地要安装ffmpeg才行）
+
+cheerio：利用nodejs写一个爬虫网站的脚本
+
+clearLog：清理日志的服务
+
+Enviroment：运行这个文件脚本时所需要的一些环境安装包
+
+ffmpeg_node: 将本地视频文件转码（本地要安装ffmpeg才行）
+
+openCV：关于openCV的一些脚本
+
+replace：清理工作易打印日志出现的各种_-_-符号
+
+screensHot：桌面截屏（定时没分钟截屏一次）
+
+sortFunction：nodejs实现一些排序算法
+
+tesseractOCR_js：通过tesseract.js实现OCR识别
+
+

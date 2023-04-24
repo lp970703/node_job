@@ -3,13 +3,14 @@
  * 1、单线程执行ocr文字识别
  * 2、并将文字坐标显示出来以及
  *  （1）tesseractBOX：该坐标位tesseract自带坐标，跟现在的x、y轴类似，
- *                    规则：从图片左下角位x、y轴原点，自左向右：x轴变大；自下而上，y轴变大。
+ *                    规则：从图片左上角位x、y轴原点，自左向右：x轴变大；自上而下，y轴变大。
  *  （2）opencvBOX：该坐标为opencv的坐标规定，从图片左上角为原点
- * 3、将文字用方盒子包住
+ * 3、将文字用方盒子包住，利用opencv给图片文字画框。
  */
 const { createWorker } = require('tesseract.js');
 const path = require('path');
 const moment = require('moment');
+const cv = require('@u4/opencv4nodejs');
 
 /**
  * 1、createWorker：起一个线程worker去处理OCR识别
@@ -50,6 +51,22 @@ const tesseractOCR = async ({targetPhotoDir, languages}) => {
   return data;
 };
 
+/**
+ * 3、利用opencv将字符标定
+ * @param {*} param0 
+ */
+const handlePhoto = async ({targetPhotoDir, wordsPosition}) => {
+  // 1、读取img图像
+  let img = cv.imread(targetPhotoDir);
+  // 2、将cv读取的默认格式BGR改为跟tesseract一样的RGB格式
+  img = cv.cvtColor(img, cv.COLOR_BGR2BGR555);
+  // let param = img.shape();
+  for (const item of wordsPosition) {
+    cv.rectangle(img, (item[1],item[2]), (item[3],item[4]), (0,0,255), 2)
+  }
+  cv.imshow("a", img);
+  cv.waitKey(0);
+}
 
 /**
  * 3、outPosition：通过tesseractOCR方法，提炼出每个字的具体位置
@@ -71,8 +88,12 @@ const outPosition = async ({targetPhotoDir, languages}) => {
   return wordsPosition;
 }
 
+const main = async ({targetPhotoDir, languages}) => {
+  const wordsPosition = await outPosition({targetPhotoDir, languages});
+  await handlePhoto({targetPhotoDir, wordsPosition});
+}
 
-outPosition({
-  targetPhotoDir: path.join(__dirname, './images/火车票.png'),
+main({
+  targetPhotoDir: path.join(__dirname, './images/taobaoShop1.png'),
   languages: 'chi_sim+eng'
 })
