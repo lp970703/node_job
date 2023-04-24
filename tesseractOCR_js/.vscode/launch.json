@@ -39,6 +39,15 @@
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}\\moreTest.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "test",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\test.js"
         }
     ]
 }
