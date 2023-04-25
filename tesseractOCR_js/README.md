@@ -22,13 +22,21 @@
 ### 三、singleThread_wordBoxes.js：  
 
 1、简介：
-*   通过tesseract.js + openCV(opencv4nodejs)方式，将图片文字信息和文字位置识别出来，并通过openCV的方式将图片按照   
+*   通过tesseract.js + openCV(opencv4nodejs)方式，将图片文字信息和文字位置识别出来，并通过openCV的方式将图片文字用绿框框选出来   
 
 2、场景：
 *   a、RPA中捕获元素并非常规元素，无法捕获到，可通过这种方式快速定位到指定文字位置后，并进行无目标点击  
 *   b、将文字识别出来后，若发现有些字体识别误差过大，可通过标识的方框快速定位，可通过tesseractOCR自带的训练模型进行训练，提高识别度     
 *   c、可为后续知道字符坐标进行裁剪。   
 
+### 四、trainedata_myself.js:
+
+1、简介：
+*   通过tesseract引擎，自己训练ocr模型脚本
+*   本脚本需要借助tesseract引擎和jTessBoxEditor工具进行训练，需要提前安装jre8以上环境以及jTessBoxEditor工具
+
+2、场景：
+*   用于自己训练ocr模型，来解决复杂的ocr场景（训练时只能识别已训练过的图片）
 
 
 ## 功能实现目录  
@@ -86,7 +94,7 @@
 *   按照步骤安装，注意安装路径不要出现中文，特殊字符以及空格（eg：c:\tools\opencv）
 *   配置环境变量：需要配置如下变量  
 
-|    环境变量名                               | 	值                                      | 
+|    环境变量名                               | 	值                                        | 
 | ------------------------------------------ | ------------------------------------------  | 
 | OPENCV_INCLUDE_DIR                         |  c:\tools\opencv\opencv\build\include       | 
 | OPENCV_LIB_DIR                             | 	c:\tools\opencv\opencv\build\x64\vc15\lib  | 
@@ -129,12 +137,21 @@
 *   执行脚本npm run install_4.6.0_cuda(同样生成build)
 *   上述指令参考github网址[@u4/opencv4nodejs](https://github.com/UrielCh/opencv4nodejs)
 
-10、使用
+10、使用@u4/opencv4nodejs
 
 ```bash
 const cv = require('@u4/opencv4nodejs');
 ```
 
+11、本地安装tesseract 
+*   安装[tesseract_V5.3_win10](https://github.com/lp970703/node_job/Environment/tesseract_V5.3_win10)中版本，安装时请注意下载的语言包。  
+*   安装完成后，将安装的目录配置到环境变量中去。  
+*   cmd窗口下输入tesseract -v查看是否出现版本。 
+
+12、本地安装jTessBoxEditor  
+*   安装[jTessBoxEditor_V2.4.1](https://github.com/lp970703/node_job/Environment/jTessBoxEditor_V2.4.1)中版本，解压完成即可。 
+*   安装java环境（jdk1.8以上），并配置环境变量。  
+*   运行：双击train.bat即可。 
 
 ### 二、踩坑点
 1、报错：Error: Command failed: cmake --version 'cmake' is not recognized as an inter   
@@ -196,8 +213,17 @@ if not defined npm_config_node_gyp (node "D:\Environment\nvm\nvm\v14.21.0\node_m
 
 5、node ./singleThread.js，通过调接口http://127.0.0.1:3002/moreThreadsOCR?workerNum=xxx&fileDir=xxx 方式进行调用
 
+### 三、singleThread_wordBoxes.js脚本运行
 
+1、将《所需环境》中的1-10全部安装
 
+2、引入@u4/opencv4nodejs和tesseract.js
+
+3、将运行参数传入main函数中
+
+4、请查看输出结果的路径会生成一张xxxRes.png图片，该图片中文字会用绿色框圈起来。
+
+5、node ./singleThread_wordBoxes.js，去输出路径检查生成的图片
 
 
 ##  小结    
