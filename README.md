@@ -3,15 +3,19 @@
 
 
 ## 功能实现目录(链接对应文件夹名称)
-1、[clearLog](https://github.com/lp970703/node_job/tree/master/clearLog)：定期清理电脑磁盘文件（自定义目录）
+*   [ffmpeg_node](https://github.com/lp970703/node_job/tree/master/ffmpeg_node): node + ffmpeg实现B站缓存的视频批量转为mp4格式，再通过视频mp4格式转为mp3双声道音频
 
-2、[ffmpeg_node](https://github.com/lp970703/node_job/tree/master/clearLog): node+ffmpeg实现B站缓存的视频批量转为mp4格式，再通过视频mp4格式转为mp3双声道音频
+*   [tesseractOCR_js](https://github.com/lp970703/node_job/tree/master/tesseractOCR_js)：node.js + Tesseract.js + opencv 实现相关文字识别，文字位置标识，利用tesseract训练ocr模型等功能。
 
-3、[replace](https://github.com/lp970703/node_job/tree/master/clearLog): js中replace用法
+*   [cheerioTest](https://github.com/lp970703/node_job/tree/master/cheerioTest)：通过nodejs的cheerio包，利用jquery将网页的html数据洗出来（以cnodejs.org网站为例）
 
-4、[screensHot](https://github.com/lp970703/node_job/tree/master/clearLog)：定时截屏功能
+*   [screensHot](https://github.com/lp970703/node_job/tree/master/screensHot)：定时截屏功能
 
-5、[sortFunction](https://github.com/lp970703/node_job/tree/master/clearLog): js实现排序算法（冒泡排序、快速排序、选择排序）
+*   [clearLog](https://github.com/lp970703/node_job/tree/master/clearLog)：定期清理电脑磁盘文件（自定义目录）
+
+*   [replace](https://github.com/lp970703/node_job/tree/master/replace): js中replace用法
+
+*   [sortFunction](https://github.com/lp970703/node_job/tree/master/sortFunction): js实现排序算法（冒泡排序、快速排序、选择排序）
 
 ......
 

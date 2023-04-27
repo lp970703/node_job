@@ -37,6 +37,7 @@
 
 2、场景：
 *   用于自己训练ocr模型，来解决复杂的ocr场景（训练时只能识别已训练过的图片）
+*   可以通过本脚本，将验证码登录中需要图片识别的每张图片下载下来，并自己训练后得到该图片
 
 
 ## 功能实现目录  
@@ -225,6 +226,18 @@ if not defined npm_config_node_gyp (node "D:\Environment\nvm\nvm\v14.21.0\node_m
 
 5、node ./singleThread_wordBoxes.js，去输出路径检查生成的图片
 
+### 四、trainedata_myself.js脚本运行
+1、将《所需环境》中的1-12全部安装
+
+2、引入@u4/opencv4nodejs和tesseract.js
+
+3、将运行参数传入main函数中
+
+4、观察main函数注释（六中的1-7步）并按照顺序一步步进行，需要人工的请先人工操作完毕后再继续运行代码
+
+5、运行脚本的人工操作均在jTessBoxEditor安装包内完成
+
+6、node ./trainedata_myself.js，在指定文件中找到xxx.traineddata文件，该文件为训练出的结果
 
 ##  小结    
 
