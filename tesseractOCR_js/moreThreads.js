@@ -10,7 +10,7 @@ const fs = require('fs');
 
 router.get('/moreThreadsOCR', async (ctx) => {
   // 1、开始获取参数
-  const { workerNum, fileDir } = ctx.query;
+  const { workerNum, fileDir, language } = ctx.query;
 
   // 2、将图片文件夹中的图片遍历出来
   const filesName = fs.readdirSync(fileDir, {withFileTypes: 'png'})
@@ -32,8 +32,8 @@ router.get('/moreThreadsOCR', async (ctx) => {
       logger: m => console.log(`${moment().format('YYYY-MM-DD HH:mm:ss')}-${JSON.stringify(m)}`)
     })
     await worker.load()
-    await worker.loadLanguage('chi_sim+eng')
-    await worker.initialize('chi_sim+eng')
+    await worker.loadLanguage(language)
+    await worker.initialize(language)
     scheduler.addWorker(worker)
   }
 

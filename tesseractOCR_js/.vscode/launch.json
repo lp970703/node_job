@@ -43,6 +43,15 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "traineddata_myself",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}\\traineddata_myself.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "test",
             "skipFiles": [
                 "<node_internals>/**"

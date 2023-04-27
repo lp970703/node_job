@@ -43,7 +43,7 @@ const singleThreadOCR = async ({targetPhotoDir, languages, targetPath}) => {
   // 生成指定路径
   await mkdirSync(targetPath);
   // 写入文件
-  const outputfileDir = `${targetPath}\\trainTickets2_trainTickets.txt`;
+  const outputfileDir = `${targetPath}\\trainTickets.txt`;
   fs.writeFileSync(outputfileDir, text);
   // detect():输出ocr的基本结果
   //  结果：data2 = { data: {orientation_confidence //方向_置信度;  orientation_degrees //方位_度;  script_confidence //脚本可信度} jobId //工作id }
@@ -54,7 +54,7 @@ const singleThreadOCR = async ({targetPhotoDir, languages, targetPath}) => {
 };
 
 singleThreadOCR({
-  targetPhotoDir: path.join(__dirname, './images/trainTickets2.png'),
-  languages: 'trainTickets',
+  targetPhotoDir: path.join(__dirname, './images/trainTickets.png'),
+  languages: 'chi_sim+eng',
   targetPath: path.join(__dirname, './output/singleThread')
 })
