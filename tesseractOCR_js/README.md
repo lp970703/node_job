@@ -144,12 +144,12 @@ const cv = require('@u4/opencv4nodejs');
 ```
 
 11、本地安装tesseract 
-*   安装[tesseract_V5.3_win10](https://github.com/lp970703/node_job/Environment/tesseract_V5.3_win10)中版本，安装时请注意下载的语言包。  
+*   安装[tesseract_V5.3_win10](https://www.aliyundrive.com/s/3GV6W2h9cdS) 提取码：7m4t。中版本，安装时请注意下载的语言包。  
 *   安装完成后，将安装的目录配置到环境变量中去。  
 *   cmd窗口下输入tesseract -v查看是否出现版本。 
 
 12、本地安装jTessBoxEditor  
-*   安装[jTessBoxEditor_V2.4.1](https://github.com/lp970703/node_job/Environment/jTessBoxEditor_V2.4.1)中版本，解压完成即可。 
+*   安装[jTessBoxEditor_V2.4.1](https://www.aliyundrive.com/s/3GV6W2h9cdS) 提取码：7m4t。中版本，解压完成即可。 
 *   安装java环境（jdk1.8以上），并配置环境变量。  
 *   运行：双击train.bat即可。 
 
@@ -229,7 +229,7 @@ if not defined npm_config_node_gyp (node "D:\Environment\nvm\nvm\v14.21.0\node_m
 ##  小结    
 
 1、如何以管理员身份打开某个路径的文件
-*   进入路径C:\Windows\System32，将[cmd.reg]https://github.com/lp970703/node_job/Environment/guanliyuan_setting文件放到目录下保存
+*   进入路径C:\Windows\System32，将[cmd.reg](https://www.aliyundrive.com/s/3GV6W2h9cdS) 提取码：7m4t。文件放到目录下保存（在guanliyuan_setting目录下）
 *   到想要管理员权限打开cmd窗口的文件，右击出现Open cmd here as Admin点击就可以打开了。
 
 2、使用nvm控制node版本
