@@ -110,6 +110,8 @@ oauth2-server相关：[oauth2-server](https://www.npmjs.com/package/node-oauth2-
 
 egg-oauth2-server相关：[egg-oauth2-server](https://github.com/Azard/egg-oauth2-server)  
 
+FFmpeg安装包：[FFmpeg安装包]
+
 <!-- 关于swagger和sequlize借鉴下面网址 -->
 <!-- (https://www.jianshu.com/p/accbe04a7ffa) -->
 <!-- 关于egg-oauth2-server相关借鉴一下网址
