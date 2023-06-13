@@ -2,7 +2,8 @@ const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 const fs = require('fs');
 const path = require('path');
-const cv = require("@u4/opencv4nodejs")
+const cv = require("@u4/opencv4nodejs");
+const { Mat } = require('opencv4nodejs');
 
 /**
  * 一、生成要保存文字识别的文件
