@@ -10,6 +10,7 @@
 *.swp
 *.tgz
 *.xml
+*.xlsx
 **/Environment
 .DS_Store
 .idea
